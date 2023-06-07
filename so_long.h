@@ -6,7 +6,7 @@
 /*   By: yachebla <yachebla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 16:03:50 by yachebla          #+#    #+#             */
-/*   Updated: 2023/06/05 18:47:55 by yachebla         ###   ########.fr       */
+/*   Updated: 2023/06/07 15:29:40 by yachebla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@
 
 typedef struct s_long
 {
-	char *map;
+	char **map;
+	int line;
+	int col;
 } t_long;
 
 // size_t	ft_strlen(const char *s);

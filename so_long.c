@@ -6,7 +6,7 @@
 /*   By: yachebla <yachebla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 19:52:30 by yachebla          #+#    #+#             */
-/*   Updated: 2023/06/05 18:58:35 by yachebla         ###   ########.fr       */
+/*   Updated: 2023/06/07 17:36:08 by yachebla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,31 +37,32 @@ int line(char *map)
 	}
 	if (!s)
 		lines--;
+	
 	printf("%d\n", lines);
 	return(lines);
 }
 
-char **read_map(char *map)
+void read_map(char *map, t_long *data)
 {
 	int	fd;
 	int	i;
-	int lines;
-	char **s;
 
 	fd = open(map,O_RDONLY);
 	if (fd == -1)
 		ft_error();
-	lines = line(map);
-	s = malloc(sizeof(char *) * lines + 1);
-	s[0] = get_next_line(fd);
+	data->line = line(map);
+	data->map = malloc(sizeof(char *) * data->line + 1);
+	data->map[0] = get_next_line(fd);
 	i = 0;
-	while (++i < lines)
-		s[i] = get_next_line(fd);
-	s[i] = NULL;
+	while (++i < data->line)
+		data->map[i] = get_next_line(fd);
+	data->map[i] = NULL;
+	data->col = ft_strlen(data->map[i - 1]) - 1;
+	data->line--;
+	printf("%d-\n", (int) ft_strlen(data->map[i - 1]));
 	i = 0;
 	// while (s[i])
 	// 	printf("%s", s[i++]);
-	return(s);
 }
 
 void check_file_extension(char *av)
@@ -76,10 +77,83 @@ void check_file_extension(char *av)
 	else
 		ft_error();
 }
+void check_new_line(t_long *data)
+{
+	int i;
+	
+	i = 0;
+	while (i <= data->line)
+	{
+		if (data->map[i][0] == '\n')
+			ft_error();
+		i++;
+	}
+	if (data->map[data->line][data->col] == '\n')
+		ft_error();
+}
+void check_wall(t_long *data)
+{
+	int i;
+	
+	i = 0;
+	while (i <= data->col)
+	{
+		if (data->map[0][i] != '1' || data->map[data->line][i] != '1')
+			ft_error();
+		i++;
+	}
+	i = 1;
+	while (i <= data->line - 1)
+	{
+		if (data->map[i][0] != '1' || data->map [i][data->col] != '1')
+			ft_error();
+		i++;
+	}
+
+}
+
+void check_exit_collectible_player(t_long *data)
+{
+	int i;
+	int j;
+	int player;
+	int collectible;
+	int	exit;
+
+	i = 1;
+	player = 0;
+	collectible = 0;
+	exit = 0;
+	while (i <= data->line)
+	{
+		j = 1;
+		while (j <= data->col - 1)
+		{
+			if (data->map[i][j] == 'C')
+				collectible++;
+			else if (data->map[i][j] == 'P')
+				player++;
+			else if (data->map[i][j] == 'E')
+				exit++;
+			else if (data->map[i][j] != 'C' && data->map[i][j] != 'E' && data->map[i][j] != 'P' && data->map[i][j] != '1' && data->map[i][j] != '0')
+				ft_error();
+			j++;
+		}
+		i++;
+	}
+	if (collectible < 1 || player != 1 || exit != 1)
+		ft_error();
+}
+void check_map(t_long *data)
+{	
+	check_new_line(data);
+	check_wall(data);
+	check_exit_collectible_player(data);
+}
 int	main(int ac,char **av) 
 {
-	char *c;
 	int i;
+	t_long data;
 	
 	i = 0;
 	if (ac != 2)
@@ -88,8 +162,8 @@ int	main(int ac,char **av)
 		return (1);
 	}
 	check_file_extension(av[1]);
-	read_map(av[1]);	
-		
+	read_map(av[1], &data);
+	check_map(&data);
 
 }
 
