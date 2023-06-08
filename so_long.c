@@ -6,7 +6,7 @@
 /*   By: yachebla <yachebla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 19:52:30 by yachebla          #+#    #+#             */
-/*   Updated: 2023/06/07 17:36:08 by yachebla         ###   ########.fr       */
+/*   Updated: 2023/06/08 15:57:42 by yachebla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ int line(char *map)
 	if (fd == -1)
 		ft_error();
 	s = get_next_line(fd);
+	if (!s)
+		ft_error();
 	lines++;
 	while (s)
 	{
@@ -144,11 +146,29 @@ void check_exit_collectible_player(t_long *data)
 	if (collectible < 1 || player != 1 || exit != 1)
 		ft_error();
 }
+
+void	check_size(t_long *data)
+{
+	int i;
+	int j;
+
+	i = 1;
+	j = ft_strlen(data->map[0]);
+	while (i < data->line)
+	{
+		if (j != (int) ft_strlen(data->map[i]))
+			ft_error();
+		i++;
+	}	
+	if (j != (int) ft_strlen(data->map[i]) + 1)
+		ft_error();
+}
 void check_map(t_long *data)
-{	
+{	 
 	check_new_line(data);
 	check_wall(data);
 	check_exit_collectible_player(data);
+	check_size(data);
 }
 int	main(int ac,char **av) 
 {
