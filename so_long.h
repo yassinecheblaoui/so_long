@@ -6,34 +6,47 @@
 /*   By: yachebla <yachebla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 16:03:50 by yachebla          #+#    #+#             */
-/*   Updated: 2023/06/07 15:29:40 by yachebla         ###   ########.fr       */
+/*   Updated: 2023/06/13 12:12:04 by yachebla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-#include <mlx.h>
-#include <stdio.h>
-#include <unistd.h>
-#include <string.h>
+# include <mlx.h>
+# include <stdio.h>
+# include <unistd.h>
+# include <string.h>
 # include <fcntl.h>
 # include "./get_next_line/get_next_line.h"
 
 typedef struct s_long
 {
-	char **map;
-	int line;
-	int col;
-} t_long;
+	char	**map;
+	int		line;
+	int		col;
+	void	*mlx;
+	void	*player;
+	void	*wall;
+	void	*collect;
+	void	*exit;
+	int		width;
+	int		height;
+	void	*window;
+	
+}t_long;
+
+typedef	struct s_pos
+{
+	int	line;
+	int	col;	/* data */
+}t_pos;
+
 
 // size_t	ft_strlen(const char *s);
 void	ft_putchar(char c);
 void	ft_putstr(char *s);
 char	*ft_strrchr(const char *s, int x);
-int	ft_strncmp(const char *s1, const char *s2, size_t x);
-
-
-
+int		ft_strncmp(const char *s1, const char *s2, size_t x);
 
 #endif

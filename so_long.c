@@ -6,13 +6,13 @@
 /*   By: yachebla <yachebla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 19:52:30 by yachebla          #+#    #+#             */
-/*   Updated: 2023/06/08 15:57:42 by yachebla         ###   ########.fr       */
+/*   Updated: 2023/06/13 16:31:47 by yachebla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "so_long.h"
 
-void ft_error()
+void ft_protect()
 {
 	ft_putstr("Error:");
 	exit (1);
@@ -27,10 +27,10 @@ int line(char *map)
 	lines = 0;
 	fd = open(map, O_RDONLY);
 	if (fd == -1)
-		ft_error();
+		ft_protect();
 	s = get_next_line(fd);
 	if (!s)
-		ft_error();
+		ft_protect();
 	lines++;
 	while (s)
 	{
@@ -51,7 +51,7 @@ void read_map(char *map, t_long *data)
 
 	fd = open(map,O_RDONLY);
 	if (fd == -1)
-		ft_error();
+		ft_protect();
 	data->line = line(map);
 	data->map = malloc(sizeof(char *) * data->line + 1);
 	data->map[0] = get_next_line(fd);
@@ -61,8 +61,8 @@ void read_map(char *map, t_long *data)
 	data->map[i] = NULL;
 	data->col = ft_strlen(data->map[i - 1]) - 1;
 	data->line--;
-	printf("%d-\n", (int) ft_strlen(data->map[i - 1]));
-	i = 0;
+	// printf("%d-\n", (int) ft_strlen(data->map[i - 1]));
+	// i = 0;
 	// while (s[i])
 	// 	printf("%s", s[i++]);
 }
@@ -72,12 +72,12 @@ void check_file_extension(char *av)
 	if (ft_strrchr (av, '.'))
 	{
 		if (av[0] == '.')	
-			ft_error();
+			ft_protect();
 		if (strcmp(ft_strrchr (av, '.'), ".ber") != 0) // system
-			ft_error();
+			ft_protect();
 	}
 	else
-		ft_error();
+		ft_protect();
 }
 void check_new_line(t_long *data)
 {
@@ -87,11 +87,11 @@ void check_new_line(t_long *data)
 	while (i <= data->line)
 	{
 		if (data->map[i][0] == '\n')
-			ft_error();
+			ft_protect();
 		i++;
 	}
 	if (data->map[data->line][data->col] == '\n')
-		ft_error();
+		ft_protect();
 }
 void check_wall(t_long *data)
 {
@@ -101,14 +101,14 @@ void check_wall(t_long *data)
 	while (i <= data->col)
 	{
 		if (data->map[0][i] != '1' || data->map[data->line][i] != '1')
-			ft_error();
+			ft_protect();
 		i++;
 	}
 	i = 1;
 	while (i <= data->line - 1)
 	{
 		if (data->map[i][0] != '1' || data->map [i][data->col] != '1')
-			ft_error();
+			ft_protect();
 		i++;
 	}
 
@@ -138,13 +138,13 @@ void check_exit_collectible_player(t_long *data)
 			else if (data->map[i][j] == 'E')
 				exit++;
 			else if (data->map[i][j] != 'C' && data->map[i][j] != 'E' && data->map[i][j] != 'P' && data->map[i][j] != '1' && data->map[i][j] != '0')
-				ft_error();
+				ft_protect();
 			j++;
 		}
 		i++;
 	}
 	if (collectible < 1 || player != 1 || exit != 1)
-		ft_error();
+		ft_protect();
 }
 
 void	check_size(t_long *data)
@@ -157,11 +157,11 @@ void	check_size(t_long *data)
 	while (i < data->line)
 	{
 		if (j != (int) ft_strlen(data->map[i]))
-			ft_error();
+			ft_protect();
 		i++;
 	}	
 	if (j != (int) ft_strlen(data->map[i]) + 1)
-		ft_error();
+		ft_protect();
 }
 void check_map(t_long *data)
 {	 
@@ -170,6 +170,82 @@ void check_map(t_long *data)
 	check_exit_collectible_player(data);
 	check_size(data);
 }
+
+// t_pos	position_player(t_long data)
+// {
+// 	int i;
+// 	int j;
+// 	t_pos p;
+	
+// 	i = 1;
+// 	p.col = 0;
+// 	p.line = 0;
+// 	while (i < data.line)
+// 	{
+// 	j = 1;
+// 	while (j < data.col)
+// 	{
+// 		if ( data.map[i][j] == 'P')
+// 		{
+// 			p.line = i;
+// 			p.col = j;
+// 			return (p);
+// 		}
+// 		j++;
+// 	}
+// 	i++;
+// 	}
+// 	return (p);
+// }
+
+void	protect(t_long *data)
+{
+	if (!data->player || !data->wall || !data->collect || !data->exit)
+		ft_protect();
+}
+
+void	put_image_to_window(t_long *data)
+{
+	int i;
+	int j;
+	 
+	i = 0;
+	while (i <= data->line )
+	{
+		printf("i = %d\n", i);
+		j = 0;
+		while (j <= data->col)
+		{
+			printf("j = %d\n", j);
+			if ( data->map[i][j] == 'P')
+				mlx_put_image_to_window(data->mlx, data->window, data->player, j * 32, i * 32);
+			else if ( data->map[i][j] == '1')
+				mlx_put_image_to_window(data->mlx, data->window, data->wall, j * 32, i * 32);
+			else if ( data->map[i][j] == 'E')
+				mlx_put_image_to_window(data->mlx, data->window, data->exit, j * 32, i * 32);
+			else if ( data->map[i][j] == 'C')
+				mlx_put_image_to_window(data->mlx, data->window, data->collect, j * 32, i * 32);
+			j++;
+		}
+		i++;
+	}
+	
+}
+void set_image(t_long *data)
+{
+	// t_pos p;
+	data->player = mlx_xpm_file_to_image(data->mlx, "./textures/player.xpm",&data->width, &data->height);
+	data->wall = mlx_xpm_file_to_image(data->mlx, "./textures/wall.xpm",&data->width, &data->height);
+	data->collect = mlx_xpm_file_to_image(data->mlx, "./textures/collect.xpm",&data->width, &data->height);
+	data->exit = mlx_xpm_file_to_image(data->mlx, "./textures/exit.xpm",&data->width, &data->height);
+	// p = position_player (*data);
+	protect(data);
+	put_image_to_window(data);
+	// mlx_put_image_to_window(data->mlx, data->window, data->player, p.col * 32, p.line * 32);
+	// printf("col = %d, line = %d\n", p.col, p.line);
+	
+}
+
 int	main(int ac,char **av) 
 {
 	int i;
@@ -184,6 +260,15 @@ int	main(int ac,char **av)
 	check_file_extension(av[1]);
 	read_map(av[1], &data);
 	check_map(&data);
-
+	data.mlx = mlx_init();
+	if (!data.mlx)
+		return (1);
+	data.window = mlx_new_window(data.mlx, (data.col + 1 )* 32, (data.line + 1)* 32, "so_long");
+	if (!data.window)
+		return (1);
+	
+	set_image(&data);
+	mlx_loop(data.mlx);
+	
+	
 }
-
