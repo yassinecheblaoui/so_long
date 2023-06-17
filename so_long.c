@@ -6,23 +6,23 @@
 /*   By: yachebla <yachebla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 19:52:30 by yachebla          #+#    #+#             */
-/*   Updated: 2023/06/13 16:31:47 by yachebla         ###   ########.fr       */
+/*   Updated: 2023/06/17 23:10:38 by yachebla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "so_long.h"
+#include "so_long.h"
 
-void ft_protect()
+void	ft_protect()
 {
 	ft_putstr("Error:");
 	exit (1);
 }
 
-int line(char *map)
+int	line(char *map)
 {
-	int	fd;
-	int	lines;
-	char *s;
+	int		fd;
+	int		lines;
+	char	*s;
 
 	lines = 0;
 	fd = open(map, O_RDONLY);
@@ -39,17 +39,15 @@ int line(char *map)
 	}
 	if (!s)
 		lines--;
-	
-	printf("%d\n", lines);
-	return(lines);
+	return (lines);
 }
 
-void read_map(char *map, t_long *data)
+void	read_map(char *map, t_long *data)
 {
 	int	fd;
 	int	i;
 
-	fd = open(map,O_RDONLY);
+	fd = open(map, O_RDONLY);
 	if (fd == -1)
 		ft_protect();
 	data->line = line(map);
@@ -61,17 +59,13 @@ void read_map(char *map, t_long *data)
 	data->map[i] = NULL;
 	data->col = ft_strlen(data->map[i - 1]) - 1;
 	data->line--;
-	// printf("%d-\n", (int) ft_strlen(data->map[i - 1]));
-	// i = 0;
-	// while (s[i])
-	// 	printf("%s", s[i++]);
 }
 
-void check_file_extension(char *av)
+void	check_file_extension(char *av)
 {
 	if (ft_strrchr (av, '.'))
 	{
-		if (av[0] == '.')	
+		if (av[0] == '.')
 			ft_protect();
 		if (strcmp(ft_strrchr (av, '.'), ".ber") != 0) // system
 			ft_protect();
@@ -79,10 +73,10 @@ void check_file_extension(char *av)
 	else
 		ft_protect();
 }
-void check_new_line(t_long *data)
+void	check_new_line(t_long *data)
 {
-	int i;
-	
+	int	i;
+
 	i = 0;
 	while (i <= data->line)
 	{
@@ -93,10 +87,10 @@ void check_new_line(t_long *data)
 	if (data->map[data->line][data->col] == '\n')
 		ft_protect();
 }
-void check_wall(t_long *data)
+void	check_wall(t_long *data)
 {
-	int i;
-	
+	int	i;
+
 	i = 0;
 	while (i <= data->col)
 	{
@@ -111,15 +105,14 @@ void check_wall(t_long *data)
 			ft_protect();
 		i++;
 	}
-
 }
 
-void check_exit_collectible_player(t_long *data)
+void	check_exit_collectible_player(t_long *data)
 {
-	int i;
-	int j;
-	int player;
-	int collectible;
+	int	i;
+	int	j;
+	int	player;
+	int	collectible;
 	int	exit;
 
 	i = 1;
@@ -137,7 +130,9 @@ void check_exit_collectible_player(t_long *data)
 				player++;
 			else if (data->map[i][j] == 'E')
 				exit++;
-			else if (data->map[i][j] != 'C' && data->map[i][j] != 'E' && data->map[i][j] != 'P' && data->map[i][j] != '1' && data->map[i][j] != '0')
+			else if (data->map[i][j] != 'C' && data->map[i][j] != 'E' &&
+					data->map[i][j] != 'P' && data->map[i][j] != '1' &&
+					data->map[i][j] != '0')
 				ft_protect();
 			j++;
 		}
@@ -145,12 +140,13 @@ void check_exit_collectible_player(t_long *data)
 	}
 	if (collectible < 1 || player != 1 || exit != 1)
 		ft_protect();
+	data->collectible = collectible;
 }
 
 void	check_size(t_long *data)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 1;
 	j = ft_strlen(data->map[0]);
@@ -163,40 +159,41 @@ void	check_size(t_long *data)
 	if (j != (int) ft_strlen(data->map[i]) + 1)
 		ft_protect();
 }
+
 void check_map(t_long *data)
-{	 
+{
 	check_new_line(data);
 	check_wall(data);
 	check_exit_collectible_player(data);
 	check_size(data);
 }
 
-// t_pos	position_player(t_long data)
-// {
-// 	int i;
-// 	int j;
-// 	t_pos p;
-	
-// 	i = 1;
-// 	p.col = 0;
-// 	p.line = 0;
-// 	while (i < data.line)
-// 	{
-// 	j = 1;
-// 	while (j < data.col)
-// 	{
-// 		if ( data.map[i][j] == 'P')
-// 		{
-// 			p.line = i;
-// 			p.col = j;
-// 			return (p);
-// 		}
-// 		j++;
-// 	}
-// 	i++;
-// 	}
-// 	return (p);
-// }
+t_pos	position_player(t_long data)
+{
+	int i;
+	int j;
+	t_pos p;
+
+	i = 1;
+	p.col = 0;
+	p.line = 0;
+	while (i < data.line)
+	{
+	j = 1;
+	while (j < data.col)
+	{
+		if ( data.map[i][j] == 'P')
+		{
+			p.line = i;
+			p.col = j;
+			return (p);
+		}
+		j++;
+	}
+	i++;
+	}
+	return (p);
+}
 
 void	protect(t_long *data)
 {
@@ -206,51 +203,103 @@ void	protect(t_long *data)
 
 void	put_image_to_window(t_long *data)
 {
-	int i;
-	int j;
-	 
+	int	i;
+	int	j;
+
 	i = 0;
-	while (i <= data->line )
+	while (i <= data->line)
 	{
 		printf("i = %d\n", i);
 		j = 0;
 		while (j <= data->col)
 		{
 			printf("j = %d\n", j);
-			if ( data->map[i][j] == 'P')
-				mlx_put_image_to_window(data->mlx, data->window, data->player, j * 32, i * 32);
-			else if ( data->map[i][j] == '1')
-				mlx_put_image_to_window(data->mlx, data->window, data->wall, j * 32, i * 32);
-			else if ( data->map[i][j] == 'E')
-				mlx_put_image_to_window(data->mlx, data->window, data->exit, j * 32, i * 32);
-			else if ( data->map[i][j] == 'C')
-				mlx_put_image_to_window(data->mlx, data->window, data->collect, j * 32, i * 32);
+			if (data->map[i][j] == 'P')
+				mlx_put_image_to_window(data->mlx, data->window, \
+				data->player, j * 64, i * 64);
+			else if (data->map[i][j] == '1')
+				mlx_put_image_to_window(data->mlx, data->window, \
+				data->wall, j * 64, i * 64);
+			else if (data->map[i][j] == 'E')
+				mlx_put_image_to_window(data->mlx, data->window, \
+				data->exit, j * 64, i * 64);
+			else if (data->map[i][j] == 'C')
+				mlx_put_image_to_window(data->mlx, data->window, \
+				data->collect, j * 64, i * 64);
 			j++;
 		}
 		i++;
 	}
-	
-}
-void set_image(t_long *data)
-{
-	// t_pos p;
-	data->player = mlx_xpm_file_to_image(data->mlx, "./textures/player.xpm",&data->width, &data->height);
-	data->wall = mlx_xpm_file_to_image(data->mlx, "./textures/wall.xpm",&data->width, &data->height);
-	data->collect = mlx_xpm_file_to_image(data->mlx, "./textures/collect.xpm",&data->width, &data->height);
-	data->exit = mlx_xpm_file_to_image(data->mlx, "./textures/exit.xpm",&data->width, &data->height);
-	// p = position_player (*data);
-	protect(data);
-	put_image_to_window(data);
-	// mlx_put_image_to_window(data->mlx, data->window, data->player, p.col * 32, p.line * 32);
-	// printf("col = %d, line = %d\n", p.col, p.line);
-	
 }
 
-int	main(int ac,char **av) 
+void	set_image(t_long *data)
 {
-	int i;
-	t_long data;
+	data->player = mlx_xpm_file_to_image(data->mlx, \
+			"./textures/player.xpm", &data->width, &data->height);
+	data->background = mlx_xpm_file_to_image(data->mlx, \
+			"./textures/background.xpm", &data->width, &data->height);
+	data->wall = mlx_xpm_file_to_image(data->mlx, \
+			"./textures/wall.xpm", &data->width, &data->height);
+	data->collect = mlx_xpm_file_to_image(data->mlx, \
+			"./textures/collect.xpm", &data->width, &data->height);
+	data->exit = mlx_xpm_file_to_image(data->mlx, \
+			"./textures/exit.xpm", &data->width, &data->height);
+	protect(data);
+	put_image_to_window(data);
+}
+
+void	action(t_long *data, int line, int col)
+{
+	t_pos p;
+	bool	i;
+
+	i = false;
+	p = position_player(*data);
+	if (data->map[line][col] == 'C' || data->map[line][col] == '0')
+	{
+		ft_putnbr(data->action++);
+		write (1, "\n", 1);
+		if (data->map[line][col] == 'C')
+			data->collectible--;
+		data->map[line][col] = 'P';
+		data->map[p.line][p.col] = '0';
+		mlx_put_image_to_window(data->mlx, data->window, data->player, line * 64, col * 64);
+		mlx_put_image_to_window(data->mlx, data->window, data->background, p.line * 64, p.col * 64);
+	}
+	if (data->collectible == 0)
+		i = true;
+	if (data->map[line][col] == 'E' && i == true)
+	{
+		ft_putstr("succes\n");
+		exit(0);
+	}
+	int j = 0;
+	while(data->map[j])
+		printf("%s", data->map[j++]);
+}
+
+int	mouvement(int key, t_long *data)
+{
+	t_pos p;
 	
+	p = position_player(*data);
+	if (key == 13 || key == 126)
+		action(data, p.line - 1, p.col);
+	else if (key == 1 || key == 125)
+		action(data, p.line + 1, p.col);
+	else if (key == 2 || key == 124)
+		action(data, p.line , p.col + 1);
+	else if (key == 0 || key == 123)
+		action(data, p.line , p.col - 1);
+	else if (key == 53)
+		exit(0);
+	return 0;
+}
+int	main(int ac, char **av)
+{
+	int		i;
+	t_long	data;
+
 	i = 0;
 	if (ac != 2)
 	{
@@ -263,12 +312,11 @@ int	main(int ac,char **av)
 	data.mlx = mlx_init();
 	if (!data.mlx)
 		return (1);
-	data.window = mlx_new_window(data.mlx, (data.col + 1 )* 32, (data.line + 1)* 32, "so_long");
+	data.window = mlx_new_window(data.mlx, (data.col + 1) * 64, \
+			(data.line + 1) * 64, "so_long");
 	if (!data.window)
 		return (1);
-	
 	set_image(&data);
+	mlx_hook(data.window, 2, 0, &mouvement, &data);
 	mlx_loop(data.mlx);
-	
-	
 }

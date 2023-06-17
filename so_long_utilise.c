@@ -6,11 +6,12 @@
 /*   By: yachebla <yachebla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 16:23:12 by yachebla          #+#    #+#             */
-/*   Updated: 2023/06/05 18:47:40 by yachebla         ###   ########.fr       */
+/*   Updated: 2023/06/17 23:04:57 by yachebla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
 size_t	ft_strlen(char *s)
 {
 	size_t	i;
@@ -27,6 +28,24 @@ void	ft_putchar(char c)
 {
 	write (1, &c, 1);
 }
+void	ft_putnbr(int x)
+{
+	if (x < 0)
+	{
+		ft_putchar('-');
+		ft_putnbr(x * (-1));
+	}
+	else if (x >= 10)
+	{
+		ft_putnbr(x / 10);
+		ft_putchar(x % 10 + '0');
+	}
+	else
+	{
+		ft_putchar(x + '0');
+	}
+}
+
 
 void	ft_putstr(char *s)
 {
@@ -53,7 +72,6 @@ char	*ft_strrchr(const char *s, int x)
 	}
 	return (NULL);
 }
-
 
 int	ft_strncmp(const char *s1, const char *s2, size_t x)
 {
