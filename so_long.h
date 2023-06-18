@@ -6,7 +6,7 @@
 /*   By: yachebla <yachebla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 16:03:50 by yachebla          #+#    #+#             */
-/*   Updated: 2023/06/17 23:05:28 by yachebla         ###   ########.fr       */
+/*   Updated: 2023/06/18 16:54:52 by yachebla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct s_pos
 // size_t	ft_strlen(const char *s);
 void	ft_putchar(char c);
 void	ft_putstr(char *s);
+int		ft_strcmp(const char *s1, const char *s2);
 void	ft_putnbr(int x);
 char	*ft_strrchr(const char *s, int x);
 int		ft_strncmp(const char *s1, const char *s2, size_t x);

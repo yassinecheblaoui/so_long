@@ -6,7 +6,7 @@
 /*   By: yachebla <yachebla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 19:52:30 by yachebla          #+#    #+#             */
-/*   Updated: 2023/06/18 16:20:50 by yachebla         ###   ########.fr       */
+/*   Updated: 2023/06/18 16:55:58 by yachebla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	check_file_extension(char *av)
 	{
 		if (av[0] == '.')
 			ft_protect();
-		if (strcmp(ft_strrchr (av, '.'), ".ber") != 0) // system
+		if (ft_strcmp(ft_strrchr (av, '.'), ".ber") != 0)
 			ft_protect();
 	}
 	else

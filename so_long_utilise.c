@@ -6,7 +6,7 @@
 /*   By: yachebla <yachebla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 16:23:12 by yachebla          #+#    #+#             */
-/*   Updated: 2023/06/17 23:04:57 by yachebla         ###   ########.fr       */
+/*   Updated: 2023/06/18 16:55:02 by yachebla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,16 @@ size_t	ft_strlen(char *s)
 		i++;
 	}
 	return (i);
+}
+
+int	ft_strcmp(const char *s1, const char *s2)
+{
+	int	i;
+	
+	i = 0;
+	while (s1[i] && s2[i] && s1[i] == s2[i])
+		i++;
+	return (s1[i] - s2[i]);
 }
 
 void	ft_putchar(char c)
