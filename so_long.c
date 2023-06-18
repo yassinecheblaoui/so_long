@@ -6,7 +6,7 @@
 /*   By: yachebla <yachebla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 19:52:30 by yachebla          #+#    #+#             */
-/*   Updated: 2023/06/17 23:10:38 by yachebla         ###   ########.fr       */
+/*   Updated: 2023/06/18 16:10:15 by yachebla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -263,8 +263,8 @@ void	action(t_long *data, int line, int col)
 			data->collectible--;
 		data->map[line][col] = 'P';
 		data->map[p.line][p.col] = '0';
-		mlx_put_image_to_window(data->mlx, data->window, data->player, line * 64, col * 64);
-		mlx_put_image_to_window(data->mlx, data->window, data->background, p.line * 64, p.col * 64);
+		mlx_put_image_to_window(data->mlx, data->window, data->player, col * 64, line * 64);
+		mlx_put_image_to_window(data->mlx, data->window, data->background, p.col * 64, p.line * 64);
 	}
 	if (data->collectible == 0)
 		i = true;
@@ -274,8 +274,8 @@ void	action(t_long *data, int line, int col)
 		exit(0);
 	}
 	int j = 0;
-	while(data->map[j])
-		printf("%s", data->map[j++]);
+	// while(data->map[j])
+	// 	printf("%s", data->map[j++]);
 }
 
 int	mouvement(int key, t_long *data)
