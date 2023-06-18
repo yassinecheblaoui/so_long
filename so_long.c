@@ -6,7 +6,7 @@
 /*   By: yachebla <yachebla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 19:52:30 by yachebla          #+#    #+#             */
-/*   Updated: 2023/06/18 16:10:15 by yachebla         ###   ########.fr       */
+/*   Updated: 2023/06/18 16:20:50 by yachebla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -273,7 +273,7 @@ void	action(t_long *data, int line, int col)
 		ft_putstr("succes\n");
 		exit(0);
 	}
-	int j = 0;
+	// int j = 0;
 	// while(data->map[j])
 	// 	printf("%s", data->map[j++]);
 }
