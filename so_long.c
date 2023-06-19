@@ -6,7 +6,7 @@
 /*   By: yachebla <yachebla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 19:52:30 by yachebla          #+#    #+#             */
-/*   Updated: 2023/06/18 16:55:58 by yachebla         ###   ########.fr       */
+/*   Updated: 2023/06/19 18:32:31 by yachebla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -295,6 +295,21 @@ int	mouvement(int key, t_long *data)
 		exit(0);
 	return 0;
 }
+
+int free_exit(t_long *data)
+{
+	int	i;
+
+	i = 0;
+	while (data->map[i])
+	{
+		free(data->map[i]);
+		i++;
+	}
+	free(data->map);
+	exit (0);
+	return (0);
+}
 int	main(int ac, char **av)
 {
 	int		i;
@@ -318,5 +333,6 @@ int	main(int ac, char **av)
 		return (1);
 	set_image(&data);
 	mlx_hook(data.window, 2, 0, &mouvement, &data);
+	mlx_hook(data.window, 17, 0, &free_exit, &data);
 	mlx_loop(data.mlx);
 }
