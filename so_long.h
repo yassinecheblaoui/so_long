@@ -6,7 +6,7 @@
 /*   By: yachebla <yachebla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 16:03:50 by yachebla          #+#    #+#             */
-/*   Updated: 2023/06/18 16:54:52 by yachebla         ###   ########.fr       */
+/*   Updated: 2023/06/20 15:51:25 by yachebla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include <mlx.h>
 # include <stdio.h>
-#include <stdbool.h>
+# include <stdbool.h>
 # include <unistd.h>
 # include <string.h>
 # include <fcntl.h>
@@ -45,7 +45,18 @@ typedef struct s_pos
 	int	col;
 }t_pos;
 
-// size_t	ft_strlen(const char *s);
+void	check_new_line(t_long *data);
+void	check_size(t_long *data);
+void	check_exit_collectible_player(t_long *data);
+void	check_wall(t_long *data);
+void	protect(t_long *data);
+void	check_file_extension(char *av);
+void	read_map(char *map, t_long *data);
+void	set_image(t_long *data);
+int		mouvement(int key, t_long *data);
+int		free_exit(t_long *data);
+void	ft_protect(int x);
+void	check_map(t_long *data);
 void	ft_putchar(char c);
 void	ft_putstr(char *s);
 int		ft_strcmp(const char *s1, const char *s2);

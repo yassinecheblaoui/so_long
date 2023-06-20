@@ -6,7 +6,7 @@
 /*   By: yachebla <yachebla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 16:23:12 by yachebla          #+#    #+#             */
-/*   Updated: 2023/06/18 16:55:02 by yachebla         ###   ########.fr       */
+/*   Updated: 2023/06/20 15:36:42 by yachebla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ size_t	ft_strlen(char *s)
 int	ft_strcmp(const char *s1, const char *s2)
 {
 	int	i;
-	
+
 	i = 0;
 	while (s1[i] && s2[i] && s1[i] == s2[i])
 		i++;
@@ -38,6 +38,7 @@ void	ft_putchar(char c)
 {
 	write (1, &c, 1);
 }
+
 void	ft_putnbr(int x)
 {
 	if (x < 0)
@@ -56,19 +57,6 @@ void	ft_putnbr(int x)
 	}
 }
 
-
-void	ft_putstr(char *s)
-{
-	int	i;
-
-	i = 0;
-	while (s[i])
-	{
-		write(1, &s[i], 1);
-		i++;
-	}
-}
-
 char	*ft_strrchr(const char *s, int x)
 {
 	int	i;
@@ -81,16 +69,4 @@ char	*ft_strrchr(const char *s, int x)
 		i--;
 	}
 	return (NULL);
-}
-
-int	ft_strncmp(const char *s1, const char *s2, size_t x)
-{
-	unsigned int	i;
-
-	i = 0;
-	if (x == i)
-		return (0);
-	while (s1[i] && s2[i] && s1[i] == s2[i] && i < x - 1)
-		i++;
-	return ((unsigned char )s1[i] - (unsigned char )s2[i]);
 }
