@@ -6,7 +6,7 @@
 /*   By: yachebla <yachebla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 14:48:35 by yachebla          #+#    #+#             */
-/*   Updated: 2023/06/20 14:49:39 by yachebla         ###   ########.fr       */
+/*   Updated: 2023/06/21 14:42:38 by yachebla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,9 @@ void	put_image_to_window(t_long *data)
 	i = 0;
 	while (i <= data->line)
 	{
-		printf("i = %d\n", i);
 		j = 0;
 		while (j <= data->col)
 		{
-			printf("j = %d\n", j);
 			if (data->map[i][j] == 'P')
 				mlx_put_image_to_window(data->mlx, data->window, \
 				data->player, j * 64, i * 64);
