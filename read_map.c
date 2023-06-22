@@ -6,7 +6,7 @@
 /*   By: yachebla <yachebla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 14:44:40 by yachebla          #+#    #+#             */
-/*   Updated: 2023/06/21 12:25:18 by yachebla         ###   ########.fr       */
+/*   Updated: 2023/06/22 12:48:15 by yachebla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int	line(char *map)
 	lines++;
 	while (s)
 	{
+		free(s);
 		s = get_next_line(fd);
 		lines++;
 	}
@@ -70,9 +71,9 @@ void	read_map(char *map, t_long *data)
 void	ft_protect(int x)
 {
 	if (x == 1)
-		ft_putstr("Error:");
+		ft_putstr("Error:\n");
 	if (x == 2)
-		ft_putstr("Eroor:");
+		ft_putstr("Eroor:\n");
 	exit (1);
 }
 
