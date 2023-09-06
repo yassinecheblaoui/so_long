@@ -6,7 +6,7 @@
 #    By: yachebla <yachebla@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/08 16:05:29 by yachebla          #+#    #+#              #
-#    Updated: 2023/06/20 14:53:40 by yachebla         ###   ########.fr        #
+#    Updated: 2023/09/05 14:33:24 by yachebla         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ CC = cc
 
 MLX = -lmlx -framework OpenGL -framework AppKit
 
-FILES = so_long_utilise.c so_long.c check_map.c read_map.c mlx.c mouve_p.c\
+FILES = so_long_utilise.c so_long.c check_map.c read_map.c mlx.c mouve_p.c check.c\
 		./get_next_line/get_next_line.c \
 		./get_next_line/get_next_line_utils.c
 

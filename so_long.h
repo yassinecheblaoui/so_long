@@ -6,7 +6,7 @@
 /*   By: yachebla <yachebla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 16:03:50 by yachebla          #+#    #+#             */
-/*   Updated: 2023/06/20 18:25:52 by yachebla         ###   ########.fr       */
+/*   Updated: 2023/09/06 13:25:53 by yachebla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 typedef struct s_long
 {
 	char	**map;
+	char	**copiedMap;
 	int		line;
 	int		col;
 	int		collectible;
@@ -37,6 +38,7 @@ typedef struct s_long
 	int		width;
 	int		height;
 	void	*window;
+	int		length;
 }t_long;
 
 typedef struct s_pos
@@ -63,5 +65,13 @@ int		ft_strcmp(const char *s1, const char *s2);
 void	ft_putnbr(int x);
 char	*ft_strrchr(const char *s, int x);
 int		ft_strncmp(const char *s1, const char *s2, size_t x);
+void    check_exit(t_long *data);
+int		ft_position_player(char **map, int i, int j);
+void 	copyMap(t_long *data) ;
+void    check_path(t_long *data);
+t_pos	position_player(t_long data);
+void    check_collect(t_long *data);
+
+
 
 #endif

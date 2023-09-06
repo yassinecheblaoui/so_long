@@ -6,7 +6,7 @@
 /*   By: yachebla <yachebla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 14:50:16 by yachebla          #+#    #+#             */
-/*   Updated: 2023/06/21 14:38:33 by yachebla         ###   ########.fr       */
+/*   Updated: 2023/08/27 12:11:42 by yachebla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_pos	position_player(t_long data)
 	p.line = 0;
 	while (i < data.line)
 	{
-	j = 1;
+		j = 1;
 		while (j < data.col)
 		{
 			if (data.map[i][j] == 'P')

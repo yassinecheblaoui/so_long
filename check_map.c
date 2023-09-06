@@ -6,7 +6,7 @@
 /*   By: yachebla <yachebla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 12:43:33 by yachebla          #+#    #+#             */
-/*   Updated: 2023/06/20 15:49:04 by yachebla         ###   ########.fr       */
+/*   Updated: 2023/08/27 12:29:09 by yachebla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	check_size(t_long *data)
 		if (j != (int) ft_strlen(data->map[i]))
 			ft_protect(1);
 		i++;
-	}	
+	}
 	if (j != (int) ft_strlen(data->map[i]) + 1)
 		ft_protect(1);
 }

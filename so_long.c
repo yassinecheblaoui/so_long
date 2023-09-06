@@ -6,7 +6,7 @@
 /*   By: yachebla <yachebla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 19:52:30 by yachebla          #+#    #+#             */
-/*   Updated: 2023/06/22 14:08:31 by yachebla         ###   ########.fr       */
+/*   Updated: 2023/09/05 13:06:51 by yachebla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int	main(int ac, char **av)
 	check_file_extension(av[1]);
 	read_map(av[1], &data);
 	check_map(&data);
+	check_path(&data);
 	data.mlx = mlx_init();
 	if (!data.mlx)
 		return (1);
@@ -45,4 +46,5 @@ int	main(int ac, char **av)
 	mlx_hook(data.window, 2, 0, &mouvement, &data);
 	mlx_hook(data.window, 17, 0, &free_exit, &data);
 	mlx_loop(data.mlx);
+	
 }
