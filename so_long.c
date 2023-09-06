@@ -6,7 +6,7 @@
 /*   By: yachebla <yachebla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 19:52:30 by yachebla          #+#    #+#             */
-/*   Updated: 2023/09/05 13:06:51 by yachebla         ###   ########.fr       */
+/*   Updated: 2023/09/06 17:10:04 by yachebla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,16 @@
 
 void	check_map(t_long *data)
 {
+	int	p;
+	int	c;
+	int	e;
+
+	p = 0;
+	c = 0;
+	e = 0;
 	check_new_line(data);
 	check_wall(data);
-	check_exit_collectible_player(data);
+	check_exit_collectible_player(data, e, c, p);
 	check_size(data);
 }
 
@@ -43,8 +50,8 @@ int	main(int ac, char **av)
 	if (!data.window)
 		return (1);
 	set_image(&data);
+	ft_putnbr(0);
 	mlx_hook(data.window, 2, 0, &mouvement, &data);
 	mlx_hook(data.window, 17, 0, &free_exit, &data);
 	mlx_loop(data.mlx);
-	
 }

@@ -6,7 +6,7 @@
 /*   By: yachebla <yachebla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 12:43:33 by yachebla          #+#    #+#             */
-/*   Updated: 2023/08/27 12:29:09 by yachebla         ###   ########.fr       */
+/*   Updated: 2023/09/06 17:29:42 by yachebla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,40 +44,33 @@ void	check_size(t_long *data)
 		ft_protect(1);
 }
 
-void	check_exit_collectible_player(t_long *data)
+void	check_exit_collectible_player(t_long *data, int e, int c, int p)
 {
 	int	i;
 	int	j;
-	int	player;
-	int	collectible;
-	int	exit;
 
-	i = 1;
-	player = 0;
-	collectible = 0;
-	exit = 0;
-	while (i <= data->line)
+	i = 0;
+	while (++i <= data->line)
 	{
 		j = 1;
 		while (j <= data->col - 1)
 		{
 			if (data->map[i][j] == 'C')
-				collectible++;
+				c++;
 			else if (data->map[i][j] == 'P')
-				player++;
+				p++;
 			else if (data->map[i][j] == 'E')
-				exit++;
+				e++;
 			else if (data->map[i][j] != 'C' && data->map[i][j] != 'E' &&
 					data->map[i][j] != 'P' && data->map[i][j] != '1' &&
 					data->map[i][j] != '0')
 				ft_protect(1);
 			j++;
 		}
-		i++;
 	}
-	if (collectible < 1 || player != 1 || exit != 1)
+	if (c < 1 || p != 1 || e != 1)
 		ft_protect(1);
-	data->collectible = collectible;
+	data->collectible = c;
 }
 
 void	check_wall(t_long *data)

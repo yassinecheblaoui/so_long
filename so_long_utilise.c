@@ -6,7 +6,7 @@
 /*   By: yachebla <yachebla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 16:23:12 by yachebla          #+#    #+#             */
-/*   Updated: 2023/06/20 15:36:42 by yachebla         ###   ########.fr       */
+/*   Updated: 2023/09/06 16:45:35 by yachebla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void	ft_putnbr(int x)
 	{
 		ft_putchar(x + '0');
 	}
+	write (1, "\n", 1);
 }
 
 char	*ft_strrchr(const char *s, int x)

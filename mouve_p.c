@@ -6,7 +6,7 @@
 /*   By: yachebla <yachebla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 14:50:16 by yachebla          #+#    #+#             */
-/*   Updated: 2023/08/27 12:11:42 by yachebla         ###   ########.fr       */
+/*   Updated: 2023/09/06 16:47:23 by yachebla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,7 @@ void	action(t_long *data, int line, int col)
 	p = position_player(*data);
 	if (data->map[line][col] == 'C' || data->map[line][col] == '0')
 	{
-		ft_putnbr(data->action++);
-		write (1, "\n", 1);
+		ft_putnbr(++data->action);
 		if (data->map[line][col] == 'C')
 			data->collectible--;
 		data->map[line][col] = 'P';
@@ -63,6 +62,7 @@ void	action(t_long *data, int line, int col)
 		i = true;
 	if (data->map[line][col] == 'E' && i == true)
 	{
+		ft_putnbr(++data->action);
 		ft_putstr("succes\n");
 		exit(0);
 	}

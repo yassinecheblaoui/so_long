@@ -6,7 +6,7 @@
 /*   By: yachebla <yachebla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 16:03:50 by yachebla          #+#    #+#             */
-/*   Updated: 2023/09/06 13:25:53 by yachebla         ###   ########.fr       */
+/*   Updated: 2023/09/06 17:11:05 by yachebla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 typedef struct s_long
 {
 	char	**map;
-	char	**copiedMap;
+	char	**copiedmap;
 	int		line;
 	int		col;
 	int		collectible;
@@ -49,7 +49,7 @@ typedef struct s_pos
 
 void	check_new_line(t_long *data);
 void	check_size(t_long *data);
-void	check_exit_collectible_player(t_long *data);
+void	check_exit_collectible_player(t_long *data, int e, int c, int p);
 void	check_wall(t_long *data);
 void	protect(t_long *data);
 void	check_file_extension(char *av);
@@ -65,13 +65,11 @@ int		ft_strcmp(const char *s1, const char *s2);
 void	ft_putnbr(int x);
 char	*ft_strrchr(const char *s, int x);
 int		ft_strncmp(const char *s1, const char *s2, size_t x);
-void    check_exit(t_long *data);
+void	check_exit(t_long *data);
 int		ft_position_player(char **map, int i, int j);
-void 	copyMap(t_long *data) ;
-void    check_path(t_long *data);
+void	copymap(t_long *data);
+void	check_path(t_long *data);
 t_pos	position_player(t_long data);
-void    check_collect(t_long *data);
-
-
+void	check_collect(t_long *data);
 
 #endif
