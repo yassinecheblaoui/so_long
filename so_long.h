@@ -6,7 +6,7 @@
 /*   By: yachebla <yachebla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 16:03:50 by yachebla          #+#    #+#             */
-/*   Updated: 2023/09/06 17:11:05 by yachebla         ###   ########.fr       */
+/*   Updated: 2023/09/07 11:43:15 by yachebla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct s_pos
 }t_pos;
 
 void	check_new_line(t_long *data);
+void	ft_write(int i);
 void	check_size(t_long *data);
 void	check_exit_collectible_player(t_long *data, int e, int c, int p);
 void	check_wall(t_long *data);

@@ -6,7 +6,7 @@
 /*   By: yachebla <yachebla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 14:44:40 by yachebla          #+#    #+#             */
-/*   Updated: 2023/06/22 12:48:15 by yachebla         ###   ########.fr       */
+/*   Updated: 2023/09/07 11:59:04 by yachebla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	ft_protect(int x)
 	if (x == 1)
 		ft_putstr("Error:\n");
 	if (x == 2)
-		ft_putstr("Eroor:\n");
+		ft_putstr("Error: invalid number of arguments\n");
 	exit (1);
 }
 

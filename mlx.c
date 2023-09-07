@@ -6,7 +6,7 @@
 /*   By: yachebla <yachebla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 14:48:35 by yachebla          #+#    #+#             */
-/*   Updated: 2023/06/21 14:42:38 by yachebla         ###   ########.fr       */
+/*   Updated: 2023/09/07 11:51:44 by yachebla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,12 @@ void	put_image_to_window(t_long *data)
 		}
 		i++;
 	}
+}
+
+void	ft_write(int i)
+{
+	ft_putnbr(i);
+	write (1, "\n", 1);
 }
 
 void	set_image(t_long *data)

@@ -6,7 +6,7 @@
 /*   By: yachebla <yachebla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 19:52:30 by yachebla          #+#    #+#             */
-/*   Updated: 2023/09/06 17:10:04 by yachebla         ###   ########.fr       */
+/*   Updated: 2023/09/07 17:45:54 by yachebla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,23 +34,21 @@ int	main(int ac, char **av)
 
 	i = 0;
 	if (ac != 2)
-	{
-		ft_putstr("Error: invalid number of arguments\n");
-		return (1);
-	}
+		ft_protect(2);
 	check_file_extension(av[1]);
 	read_map(av[1], &data);
 	check_map(&data);
 	check_path(&data);
+	data.action = 0;
 	data.mlx = mlx_init();
 	if (!data.mlx)
 		return (1);
 	data.window = mlx_new_window(data.mlx, (data.col + 1) * 64, \
-			(data.line + 1) * 64, "so_long");
+		(data.line + 1) * 64, "so_long");
 	if (!data.window)
 		return (1);
 	set_image(&data);
-	ft_putnbr(0);
+	write (1, "0\n", 2);
 	mlx_hook(data.window, 2, 0, &mouvement, &data);
 	mlx_hook(data.window, 17, 0, &free_exit, &data);
 	mlx_loop(data.mlx);

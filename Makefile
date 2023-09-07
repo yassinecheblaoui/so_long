@@ -6,7 +6,7 @@
 #    By: yachebla <yachebla@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/08 16:05:29 by yachebla          #+#    #+#              #
-#    Updated: 2023/09/05 14:33:24 by yachebla         ###   ########.fr        #
+#    Updated: 2023/09/07 11:43:11 by yachebla         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ MLX = -lmlx -framework OpenGL -framework AppKit
 
 FILES = so_long_utilise.c so_long.c check_map.c read_map.c mlx.c mouve_p.c check.c\
 		./get_next_line/get_next_line.c \
-		./get_next_line/get_next_line_utils.c
+		./get_next_line/get_next_line_utils.c 
 
  OBJ = $(FILES:.c=.o)
  
